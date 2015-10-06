@@ -1,1 +1,2 @@
-DAEMON_ARGS="--user {{ user }}"
+TD_AGENT_USER={{ user }}
+TD_AGENT_GROUP={{ group }}
