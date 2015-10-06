@@ -1,0 +1,4 @@
+version: "2.2.1"
+user: "root"
+fluent_plugin: []
+custom_conf: []
