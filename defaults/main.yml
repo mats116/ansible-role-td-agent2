@@ -1,5 +1,4 @@
-version: "2.2.1"
-user: "root"
-group: "root"
-fluent_plugin: []
-custom_conf: []
+td_agent_version: "2.2.1"
+td_agent_user: root
+td_agent_group: root
+td_agent_plugins: []

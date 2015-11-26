@@ -1,17 +1,17 @@
 - name: modify repository
   apt_repository:
-    repo: 'deb [arch=amd64] http://packages.treasuredata.com/2/ubuntu/trusty/ trusty contrib'
+    repo: "deb [arch=amd64] http://packages.treasuredata.com/2/ubuntu/trusty/ trusty contrib"
     state: present
 
 - name: install td-agent
   apt:
-    name: "td-agent={{ version }}*"
+    name: "td-agent={{ td_agent_version }}*"
     state: present
     force: yes
 
 - name: install fluent plugins
   shell: "/opt/td-agent/usr/sbin/td-agent-gem install --no-ri --no-rdoc {{ item }}"
-  with_items: "{{ fluent_plugin }}"
+  with_items: "{{ td_agent_plugins }}"
 
 - name: modify sysconfig
   template:
@@ -38,16 +38,6 @@
     owner: root
     group: root
     mode: 0755
-
-- name: modify custom config
-  template:
-    src: "conf.d/{{ item }}"
-    dest: "/etc/td-agent/conf.d/{{ item }}"
-    owner: root
-    group: root
-    mode: 0644
-  with_items: "{{ custom_conf }}"
-  notify: restart td-agent
 
 - name: td-agent is enabled
   service:
